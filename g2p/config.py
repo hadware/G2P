@@ -7,14 +7,14 @@ cpu = torch.device('cpu')
 gpu = torch.device('cuda')
 
 
-class DataConfig(object):
+class DataConfig:
     language = os.getenv('LANGUAGE', 'EN')
     graphemes_path = f'resources/{language}/Graphemes.json'
     phonemes_path = f'resources/{language}/Phonemes.json'
     lexicon_path = f'resources/{language}/Lexicon.json'
 
 
-class ModelConfig(object):
+class ModelConfig:
     with open(DataConfig.graphemes_path) as f:
         graphemes_size = len(json.load(f))
 
@@ -24,7 +24,7 @@ class ModelConfig(object):
     hidden_size = 128
 
 
-class TrainConfig(object):
+class TrainConfig:
     device = gpu if torch.cuda.is_available() else cpu
     lr = 3e-4
     batch_size = 128
@@ -32,7 +32,7 @@ class TrainConfig(object):
     log_path = f'log/{DataConfig.language}'
 
 
-class TestConfig(object):
+class TestConfig:
     device = cpu
     encoder_model_path = f'models/{DataConfig.language}/encoder_e{TrainConfig.epochs:02}.pth'
     decoder_model_path = f'models/{DataConfig.language}/decoder_e{TrainConfig.epochs:02}.pth'

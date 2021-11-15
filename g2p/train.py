@@ -1,16 +1,12 @@
-#!/usr/bin/env python3
-
-import os
-
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 
-from data import PersianLexicon, collate_fn
-from model import Encoder, Decoder
-from config import DataConfig, ModelConfig, TrainConfig
+from .config import DataConfig, ModelConfig, TrainConfig
+from .data import PersianLexicon, collate_fn
+from .model import Encoder, Decoder
 
 # data prep
 ds = PersianLexicon(
@@ -52,6 +48,7 @@ optimizer = torch.optim.Adam(
     lr=TrainConfig.lr
 )
 
+# TODO: move the training code into the G2P model
 # training loop
 counter = 0
 for e in range(TrainConfig.epochs):
@@ -88,7 +85,7 @@ for e in range(TrainConfig.epochs):
         p = p.view(-1)
         loss = criterion(outputs, p)
 
-        # updata weights
+        # update weights
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()

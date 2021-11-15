@@ -38,7 +38,7 @@ Feel free to provide resources for other languages.
 
 Both encoder-decoder seq2seq model and attention model could handle G2P problem.
 Here we train attention based model.
-![attention model](attention/attention-bidi.jpg)
+![attention model](docs/attention-bidi.jpg)
 The encoder model get sequence of graphemes and produces states at each timestep.
 Encoder states used during attention decoding.
 The decoder attends to appropriate encoder state (according to its state) and produces phonemes.
@@ -79,7 +79,7 @@ You could also visualize the attention weights, using ```--visualize```:
 
 EN                              | FA                         | RU
 :------------------------------:|:--------------------------:|:---------------------------:
-![](attention/EN/PYTHON.png)    |![](attention/FA/پایتون.png)|![](attention/RU/питон.png)
+![](docs/EN/PYTHON.png)    |![](docs/FA/پایتون.png)|![](docs/RU/питон.png)
 
 ## Other implementations
 
